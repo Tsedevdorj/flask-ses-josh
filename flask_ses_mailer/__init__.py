@@ -33,7 +33,7 @@ class SESMailer(object):
             return ctx.ses_connection
 
     @classmethod
-    def destination(self, to_addresses):
+    def destination(self, to_addresses, cc_addresses):
         """Converts strings to lists and formats a valid SES Destination
         model.
 
@@ -49,7 +49,12 @@ class SESMailer(object):
             address_list.append(to_addresses)
         elif isinstance(to_addresses, list):
             address_list = to_addresses
-        return { 'ToAddresses': address_list }
+        cc_address_list = []
+        if isinstance(cc_addresses, str):
+            cc_address_list.append(cc_addresses)
+        elif isinstance(cc_addresses, list):
+            cc_address_list = cc_addresses
+        return { 'ToAddresses': address_list, 'CcAddresses': cc_address_list }
 
     def message(self, subject, body, body_type='Text'):
         """Formats the arguments into a valid SES Message.  The SES Message
@@ -94,7 +99,7 @@ class SESMailer(object):
             }
         }
 
-    def send(self, subject, body, to_addresses, body_type='Text', **kwargs):
+    def send(self, subject, body, to_addresses, cc_addresses=[], body_type='Text', **kwargs):
         """Send the email via Amazon SES.
 
         Args:
@@ -119,7 +124,7 @@ class SESMailer(object):
             )
             # Provide the contents of the email.
             response = self.client.send_email(
-                Destination=self.destination(to_addresses),
+                Destination=self.destination(to_addresses, cc_addresses),
                 Message=message,
                 Source=self.ses_source_email
             )
