@@ -122,11 +122,15 @@ class SESMailer(object):
                 body=body,
                 body_type=body_type
             )
+            if "sender_name" in kwargs:
+                source = f"{kwargs.get('sender_name')} <{self.ses_source_email}>"
+            else:
+                source = self.ses_source_email
             # Provide the contents of the email.
             response = self.client.send_email(
                 Destination=self.destination(to_addresses, cc_addresses),
                 Message=message,
-                Source=self.ses_source_email
+                Source=source
             )
         # Display an error if something goes wrong.
         except ClientError as e:

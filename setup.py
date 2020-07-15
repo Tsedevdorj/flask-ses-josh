@@ -5,14 +5,14 @@ def readme():
         return f.read()
 
 setup(
-    name='Flask-SES-Mailer',
+    name='Flask-SES-Mailer-Josh',
     version='1.0.2',
     url='https://github.com/iamjohnnym/Flask-SES-Mailer',
     license='Apache2',
     author='john martin',
     author_email='john.martin@configure.systems',
     description='Flask extension to send mail via AWS Simple Email Service.',
-    packages=['flask_ses_mailer'],
+    packages=['flask_ses_mailer_josh'],
     zip_safe=False,
     include_package_data=True,
     test_suite='tests',

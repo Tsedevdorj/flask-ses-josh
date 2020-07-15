@@ -1,7 +1,7 @@
 language: python
 
 python:
-- 2.7
+- 3.7
 
 before_script:
 - pip install -r requirements.txt
@@ -26,7 +26,7 @@ deploy:
     on:
       branch: staging
       tags: false
-      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+      condition: $TRAVIS_PYTHON_VERSION = "3.7"
   - provider: pypi
     distributions: sdist
     server: https://test.pypi.org/legacy/
@@ -36,7 +36,7 @@ deploy:
     on:
       branch: master
       tags: false
-      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+      condition: $TRAVIS_PYTHON_VERSION = "3.7"
   - provider: pypi
     distributions: sdist
     server: https://upload.pypi.org/legacy/
@@ -46,4 +46,4 @@ deploy:
     on:
       branch: master
       tags: true
-      condition: $TRAVIS_PYTHON_VERSION = "2.7"
+      condition: $TRAVIS_PYTHON_VERSION = "3.7"

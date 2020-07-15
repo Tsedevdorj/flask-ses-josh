@@ -5,7 +5,7 @@ cov = coverage.coverage(branch=True)
 cov.start()
 
 from flask import Flask
-from flask_ses_mailer import SESMailer
+from flask_ses_mailer_josh import SESMailer
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret'
