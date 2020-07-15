@@ -7,10 +7,10 @@ def readme():
 setup(
     name='Flask-SES-Mailer-Josh',
     version='1.0.2',
-    url='https://github.com/iamjohnnym/Flask-SES-Mailer',
+    url='https://github.com/Tsedevdorj/flask-ses-josh',
     license='Apache2',
-    author='john martin',
-    author_email='john.martin@configure.systems',
+    author='Josh Batjargal',
+    author_email='tsedevdorj94@gmail.com',
     description='Flask extension to send mail via AWS Simple Email Service.',
     packages=['flask_ses_mailer_josh'],
     zip_safe=False,
