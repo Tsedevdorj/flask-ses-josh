@@ -15,13 +15,19 @@ class SESMailer(object):
 
     def init_app(self, app):
         self.app = app
+        self.aws_access_key = self.app.config.get("AWS_ACCESS_KEY_ID") or None
+        self.aws_secret_key =  self.app.config.get("AWS_SECRET_ACCESS_KEY") or None
         self.ses_charset = self.app.config.get("SES_CHARSET") or 'UTF-8'
         self.aws_region = self.app.config.get("AWS_REGION") or 'us-west-2'
         self.ses_source_email = self.app.config.get("SES_SOURCE_EMAIL")
         self.client = self._connect()
 
     def _connect(self):
-        self.client = boto3.client('ses', region_name=self.aws_region)
+        if self.aws_access_key and self.aws_secret_key:
+            self.client = boto3.client('ses', aws_access_key_id=self.aws_access_key , \
+                aws_secret_access_key=self.aws_secret_key, region_name=self.aws_region)
+        else:
+            self.client = boto3.client('ses', region_name=self.aws_region)
         return self.client
 
     @property
