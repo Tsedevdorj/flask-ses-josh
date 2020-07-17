@@ -6,7 +6,7 @@ def readme():
 
 setup(
     name='Flask-SES-Mailer-Josh',
-    version='1.0.2',
+    version='1.0.3',
     url='https://github.com/Tsedevdorj/flask-ses-josh',
     license='Apache2',
     author='Josh Batjargal',
